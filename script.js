@@ -163,6 +163,16 @@ hamburger.className = 'hamburger';
 hamburger.innerHTML = '&#9776;'; // ☰
 document.body.appendChild(hamburger);
 
+// Boş alana tıklayınca sidebar kapansın
+document.addEventListener('click', (e) => {
+  const sidebar = document.querySelector('nav.sidebar');
+  const hamburger = document.querySelector('.hamburger');
+  if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+    sidebar.classList.remove('active');
+  }
+});
+
+
 hamburger.onclick = () => {
   document.querySelector('nav.sidebar').classList.toggle('active');
 };
