@@ -157,4 +157,13 @@ setInterval(() => {
       `).join('');
     };
   }
+// Hamburger Menü Aç/Kapat
+const hamburger = document.createElement('div');
+hamburger.className = 'hamburger';
+hamburger.innerHTML = '&#9776;'; // ☰
+document.body.appendChild(hamburger);
+
+hamburger.onclick = () => {
+  document.querySelector('nav.sidebar').classList.toggle('active');
+};
   
