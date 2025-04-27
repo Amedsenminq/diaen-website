@@ -172,6 +172,48 @@ document.addEventListener('click', (e) => {
   }
 });
 
+if (document.getElementById('login-btn')) {
+  document.getElementById('login-btn').onclick = () => {
+    window.location.href = 'auth.html';
+  };
+}
+
+if (document.getElementById('scan-btn')) {
+  document.getElementById('scan-btn').onclick = async () => {
+    try {
+      const device = await navigator.bluetooth.requestDevice({ acceptAllDevices: true });
+      alert('Bağlantı kuruldu: ' + (device.name || device.id));
+    } catch (error) {
+      alert('Bluetooth cihazı bulunamadı.');
+    }
+  };
+}
+
+if (document.getElementById('sync-btn')) {
+  document.getElementById('sync-btn').onclick = () => {
+    alert('Senkronizasyon başladı!');
+    setTimeout(() => {
+      alert('Senkronizasyon tamamlandı!');
+    }, 2000);
+  };
+}
+
+if (document.getElementById('notify-btn')) {
+  document.getElementById('notify-btn').onclick = () => {
+    if (Notification.permission === 'granted') {
+      new Notification('Diaen', { body: 'Bu bir test bildirimidir!' });
+    } else if (Notification.permission !== 'denied') {
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          new Notification('Diaen', { body: 'Bu bir test bildirimidir!' });
+        }
+      });
+    } else {
+      alert('Bildirimlere izin vermediniz.');
+    }
+  };
+}
+
 
 hamburger.onclick = () => {
   document.querySelector('nav.sidebar').classList.toggle('active');
